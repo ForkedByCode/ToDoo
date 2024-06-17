@@ -19,7 +19,13 @@ function App() {
     }
   };
 
-  console.log(tasks);
+  function deleteTask(taskIndex) {
+    setTasks((prevTasks) => {
+      return prevTasks.filter((_, prevTasksIndex) => {
+        return prevTasksIndex != taskIndex;
+      });
+    });
+  }
 
   return (
     <>
@@ -29,7 +35,7 @@ function App() {
           writeTask={writeTask}
           addTasks={addTasks}
         />
-        <TaskDisplay taskList={tasks} />
+        <TaskDisplay taskList={tasks} deleteTask={deleteTask} />
       </main>
     </>
   );
